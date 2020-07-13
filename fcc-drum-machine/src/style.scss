@@ -1,0 +1,63 @@
+$width: 100px;
+$height: 75px;
+$padswidth: ($width + 10) * 3;
+$padsheight: ($height + 10) * 3;
+$display-height: 50px;
+$bg-machine: #20a0c5;
+$bg-button: #e369b3;
+$bg-display: #786ad4;
+
+@mixin shared($w, $h) {
+  width: $w;
+  height: $h;
+  margin: auto;
+}
+
+body {
+  font-family: "Lucida Console", Monaco, monospace;
+  background-color: #f9a079;
+  text-align: center;
+}
+
+#drum-machine {
+  @include shared(250 + $padswidth, $padsheight);
+  display: flex;
+  border-radius: 5px;
+  padding: 25px 5px 25px 25px;
+  background-color: $bg-machine;
+}
+
+@media (max-width: 620px) {
+  #drum-machine {
+    flex-direction: column;
+    width: $padswidth;
+    height: 100 + $padsheight;
+    padding: 25px;
+  } 
+}
+
+#drum-pads {
+  @include shared($padswidth, $padsheight);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  :focus {
+    outline: none;
+    background-color: #bf57e3;
+    box-shadow: none;
+  }
+}
+
+.drum-pad {
+  @include shared($width, $height);
+  background-color: $bg-button;
+  font-family: inherit;
+  border-radius: 5px;
+  box-shadow: $bg-display 3px 3px;
+}
+
+#display {
+  @include shared($width * 2, $display-height);
+  line-height: $display-height;
+  background-color: $bg-display;
+}
